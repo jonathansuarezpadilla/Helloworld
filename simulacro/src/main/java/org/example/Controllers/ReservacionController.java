@@ -22,4 +22,9 @@ public class ReservacionController {
     public ArrayList<Reservacion> readall(int id){
         return this.reservacion.readAll(id);
     }
+
+
+    public void update(int id, Reservacion request){
+        this.reservacion.update(id, request);
+    }
 }

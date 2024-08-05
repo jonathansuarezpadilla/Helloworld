@@ -1,8 +1,8 @@
 package org.example.Persistence.crud;
 
-public interface UpdateModel {
+public interface UpdateModel<ID,entity> {
 
-    public void update(int id, String modelo,int capacidad);
+    public void update(ID id,entity entidad);
 
 
 

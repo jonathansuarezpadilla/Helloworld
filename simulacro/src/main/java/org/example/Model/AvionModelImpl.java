@@ -93,8 +93,9 @@ public class AvionModelImpl implements IAvionModel {
     }
 
 
+    /*
     @Override
-    public ArrayList<Avion> readAll(){
+    public ArrayList<Avion> readAll(Integer id){
         //open connection
         Connection connection = MysqlConfig.OpenConnection();
 
@@ -133,11 +134,14 @@ public class AvionModelImpl implements IAvionModel {
 
         MysqlConfig.closeConnection();
         return avions;
+
+
+
     }
 
+    */
 
-
-
+    /*
     @Override
     public void update(int id, String modelo,int capacidad) {
 
@@ -167,11 +171,56 @@ public class AvionModelImpl implements IAvionModel {
         }
 
     }
+    */
 
     @Override
-    public void delete(String id){
+    public void delete(Integer id){
+
+        Connection connection=MysqlConfig.OpenConnection();
+
+        try{
+            // create SQL
+            String sqlQuery="delete from avion where id_avion=?;";
+            PreparedStatement preparedStatement= connection.prepareStatement(sqlQuery);
+
+            preparedStatement.setInt(1,id);
+
+            //prepardstatement execute
+            preparedStatement.execute();
+
+            preparedStatement.close();
+            MysqlConfig.closeConnection();
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
 
     }
 
+    @Override
+    public void update(Integer id, Avion request) {
+
+        Connection connection = MysqlConfig.OpenConnection();
+
+        try{
+            String sqlQUery="update avion set modelo=?,capacidad=? where id_avion=?; ";
+
+            PreparedStatement preparedStatement= connection.prepareStatement(sqlQUery);
+
+            preparedStatement.setString(1,request.getModelo());
+            preparedStatement.setInt(2,request.getCapacidad());
+            preparedStatement.setInt(3,id);
+
+
+            preparedStatement.execute();
+
+            preparedStatement.close();
+            MysqlConfig.closeConnection();
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

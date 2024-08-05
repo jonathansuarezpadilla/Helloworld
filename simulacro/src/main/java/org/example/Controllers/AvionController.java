@@ -20,7 +20,12 @@ public class AvionController {
     }
 
 
-    public void update(int id, String modelo,int capacidad){
-        this.AvionModel.update(id, modelo, capacidad);
+    public void update(Integer id, Avion request){
+        this.AvionModel.update(id, request);
+    }
+
+
+    public void delete(int id){
+        this.AvionModel.delete(id);
     }
 }

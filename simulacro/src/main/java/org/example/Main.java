@@ -42,18 +42,40 @@ public class Main {
         //JOptionPane.showMessageDialog(null, reservacionController.readall(idVuelo));
 
 
+        //update
+        /*
+        ReservacionController reservacionController = new ReservacionController();
+
+        int id_reservacion=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del reservacion"));
+        String asiento=JOptionPane.showInputDialog("Ingrese el asiento");
+
+        Reservacion reservacion= new Reservacion();
+        reservacion.setAsiento(asiento);
+        reservacionController.update(id_reservacion,reservacion);
+        */
+
+        /*
+
+
+
+
+
+
 
 
         //Vuelo
         VueloController vueloController = new VueloController();
 
+        int id_vuelo=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del vuelo que desea cambiarle la fecha:"));
 
-        String destino=(JOptionPane.showInputDialog("Insert to destiny"));
         Date fecha_salida= Date.valueOf(JOptionPane.showInputDialog("ingrese la fecha de salida en el siguiente formato: "));
-        Time hora_salida=Time.valueOf(JOptionPane.showInputDialog("Insert the time"));
-        int idavion=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del avion"));
 
-        Vuelo vuelo=new Vuelo(destino,fecha_salida,hora_salida,idavion);
+
+        Vuelo vuelo=new Vuelo();
+        vuelo.setFecha_salida(fecha_salida);
+        vueloController.update(id_vuelo,vuelo);
+        */
+
 
         /*
         String destino=(JOptionPane.showInputDialog("Insert to destiny"));
@@ -138,7 +160,29 @@ public class Main {
         avionController.create(avion);
         */
 
+        //update avion
 
+        AvionController avionController = new AvionController();
+
+        int id=Integer.parseInt(JOptionPane.showInputDialog("Insert el id del avion a actualizar"));
+        String modelo=JOptionPane.showInputDialog("Insert to modelo");
+        int capacidad= Integer.parseInt(JOptionPane.showInputDialog("Insert to capacidad"));
+
+
+        Avion avion=new Avion();
+        avion.setModelo(modelo);
+        avion.setCapacidad(capacidad);
+        avionController.update(id,avion);
+
+
+
+        //delete avion
+
+        /*
+        AvionController avionController = new AvionController();
+        int id=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del avion"));
+        avionController.delete(id);
+        */
 
     }
 }

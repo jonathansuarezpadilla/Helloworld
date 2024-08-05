@@ -82,7 +82,25 @@ public class ReservacionModelImp implements IReservacionModel {
     }
 
 
+    @Override
+    public void update(Integer id,Reservacion request){
+        Connection connection= MysqlConfig.OpenConnection();
 
+        try{
+            String sqlQuery="update reservacion set asiento=? where id_reservacion=?;";
+            PreparedStatement preparedStatement=connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(2,id);
+            preparedStatement.setString(1,request.getAsiento());
+
+            preparedStatement.execute();
+            preparedStatement.close();
+            MysqlConfig.closeConnection();
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
 
     /*
 

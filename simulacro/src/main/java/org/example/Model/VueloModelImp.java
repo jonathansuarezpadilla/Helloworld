@@ -5,10 +5,7 @@ import org.example.Entities.Vuelo;
 import org.example.Persistence.configDB.MysqlConfig;
 import org.example.Persistence.imodel.IVueloModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class VueloModelImp  implements IVueloModel {
 
@@ -89,43 +86,35 @@ public class VueloModelImp  implements IVueloModel {
     }
 
     @Override
-    public void update(int id, String modelo, int capacidad) {
+    public void update(Integer id,Vuelo request) {
 
         Connection connection= MysqlConfig.OpenConnection();
         Vuelo vuelo=null;
+
         try{
             //Create SQL
 
-            String sqlQuery="select * from  where id_avion=?;";
+            String sqlQuery="update vuelo set fecha_salida=? where id_vuelo=?;";
 
             //PreparedStatement
             PreparedStatement preparedStatement= connection.prepareStatement(sqlQuery);
 
             //Assing to ?
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(2,id);
+            preparedStatement.setDate(1,request.getFecha_salida());
+
+
 
             //execute
             preparedStatement.execute();
 
-            ResultSet resultSet= preparedStatement.getResultSet();
-
-            if (resultSet.next()){
-                vuelo= new Vuelo(
-                        resultSet.getString("destino"),
-                        resultSet.getDate("fecha_salida"),
-                        resultSet.getTime("hora_salida"),
-                        resultSet.getInt("id_avion")
-                );
-                System.out.println("actualización de vuelo realizada");
-            }
-            else{
-                System.out.println("no existe ese vuelo");
-            }
-
+            preparedStatement.close();
+            MysqlConfig.closeConnection();
 
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-        MysqlConfig.closeConnection();
     }
+
+
 }

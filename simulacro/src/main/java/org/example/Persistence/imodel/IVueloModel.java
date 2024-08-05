@@ -6,7 +6,10 @@ import org.example.Persistence.crud.CreateModel;
 import org.example.Persistence.crud.ReadModel;
 import org.example.Persistence.crud.UpdateModel;
 
+import java.sql.Time;
+import java.util.Date;
+
 public interface IVueloModel extends
         CreateModel<Vuelo>,
-        ReadModel<String,Vuelo>, UpdateModel {
+        ReadModel<String,Vuelo>, UpdateModel<Integer,Vuelo> {
 }

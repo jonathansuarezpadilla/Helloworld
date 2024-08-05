@@ -21,8 +21,8 @@ public class VueloController {
         return this.vueloModel.readById(destino);
     }
 
-    public void update(int id_vuelo, String destino, Date fecha_salida, Time hora_salida, int id_avion) {
-        this.vueloModel.update(id_vuelo,destino,id_avion);
+    public void update(int id_vuelo,Vuelo request) {
+        this.vueloModel.update(id_vuelo,request);
     }
 
 }

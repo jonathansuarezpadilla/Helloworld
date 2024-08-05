@@ -18,4 +18,9 @@ public class PasajeroController {
     public Pasajero readModel(String name){
         return this.pasajeroModel.readById(name);
     }
+
+
+    public void update(int id, Pasajero request){
+        this.pasajeroModel.update(id,request);
+    }
 }

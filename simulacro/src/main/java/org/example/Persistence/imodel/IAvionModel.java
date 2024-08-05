@@ -7,8 +7,7 @@ import java.util.ArrayList;
 
 public interface IAvionModel
         extends CreateModel<Avion>,
-        DeleteModel<String>,
+        DeleteModel<Integer>,
         ReadModel<Integer,Avion>,
-        UpdateModel
-        {
+        UpdateModel<Integer,Avion>{
 }

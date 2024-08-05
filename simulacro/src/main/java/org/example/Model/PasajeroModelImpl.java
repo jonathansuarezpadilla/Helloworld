@@ -89,5 +89,25 @@ public class PasajeroModelImpl implements IPasajeroModel {
         return pasajero;
     }
 
+    @Override
+    public void update(Integer id, Pasajero request){
+
+        Connection connection = MysqlConfig.OpenConnection();
+
+        try{
+            String sqlQuery="update pasajero set nombre=?, apellido=?,documento_identidad=? where id_pasajero=?;";
+            PreparedStatement preparedStatement= connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(4,id);
+            preparedStatement.setString(1,request.getNombre());
+            preparedStatement.setString(2,request.getApellido());
+            preparedStatement.setString(3,request.getDocumento_indentidad());
+            preparedStatement.execute();
+
+            preparedStatement.close();
+            MysqlConfig.closeConnection();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 
 }
